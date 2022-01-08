@@ -1,6 +1,7 @@
 package first.firstspring.service;
 
 import first.firstspring.repository.JdbcMemberRepository;
+import first.firstspring.repository.JdbcTemplateMemberRepository;
 import first.firstspring.repository.MemberRepository;
 import first.firstspring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class SpringConfig {
 
 
         // DB로 연결할 때 얘마 dbmemoryrepository 수정하면 됨
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
+
+        //Jdbctemplate 사용
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
