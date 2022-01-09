@@ -5,6 +5,7 @@ import first.firstspring.repository.MemberRepository;
 import first.firstspring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,9 @@ import java.util.Optional;
 // autowired할 수 있게 spring이 올라올 때 memberservice를 등록해줌
 // Component scan 사용
 //@Service
+
+//jpa에서 Transcational 필요
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
 

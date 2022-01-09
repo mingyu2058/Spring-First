@@ -1,23 +1,24 @@
 package first.firstspring.service;
 
-import first.firstspring.repository.JdbcMemberRepository;
-import first.firstspring.repository.JdbcTemplateMemberRepository;
-import first.firstspring.repository.MemberRepository;
-import first.firstspring.repository.MemoryMemberRepository;
+import first.firstspring.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource;
+    //Jdbc,Jdbc template 사용할 떄
+    //private DataSource dataSource;
+
+    private EntityManager em;
 
     @Autowired
-    public SpringConfig(DataSource dataSource){
-        this.dataSource = dataSource;
+    public SpringConfig(DataSource dataSource, EntityManager em){
+        this.em = em;
     }
 
     @Bean // 스프링이 뜰 때 읽고 bean에 등록해줌
@@ -36,6 +37,8 @@ public class SpringConfig {
         //return new JdbcMemberRepository(dataSource);
 
         //Jdbctemplate 사용
-        return new JdbcTemplateMemberRepository(dataSource);
+        //return new JdbcTemplateMemberRepository(dataSource);
+
+        return new JpaMemberRepository(em);
     }
 }
